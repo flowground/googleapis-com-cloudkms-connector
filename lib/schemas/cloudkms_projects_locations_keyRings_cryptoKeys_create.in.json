@@ -1,0 +1,218 @@
+{
+    "type": "object",
+    "properties": {
+        "cryptoKeyId": {
+            "type": "string"
+        },
+        "parent": {
+            "required": true,
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A CryptoKey represents a logical key that can be used for cryptographic\noperations.\n\nA CryptoKey is made up of one or more versions, which\nrepresent the actual key material used in cryptographic operations.",
+            "properties": {
+                "createTime": {
+                    "description": "Output only. The time at which this CryptoKey was created.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "labels": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Labels with user-defined metadata. For more information, see\n[Labeling Keys](/kms/docs/labeling-keys).",
+                    "type": "object"
+                },
+                "name": {
+                    "description": "Output only. The resource name for this CryptoKey in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+                    "type": "string"
+                },
+                "nextRotationTime": {
+                    "description": "At next_rotation_time, the Key Management Service will automatically:\n\n1. Create a new version of this CryptoKey.\n2. Mark the new version as primary.\n\nKey rotations performed manually via\nCreateCryptoKeyVersion and\nUpdateCryptoKeyPrimaryVersion\ndo not affect next_rotation_time.\n\nKeys with purpose\nENCRYPT_DECRYPT support\nautomatic rotation. For other keys, this field must be omitted.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "primary": {
+                    "description": "Output only. A copy of the \"primary\" CryptoKeyVersion that will be used\nby Encrypt when this CryptoKey is given\nin EncryptRequest.name.\n\nThe CryptoKey's primary version can be updated via\nUpdateCryptoKeyPrimaryVersion.\n\nAll keys with purpose\nENCRYPT_DECRYPT have a\nprimary. For other keys, this field will be omitted.",
+                    "properties": {
+                        "algorithm": {
+                            "description": "Output only. The CryptoKeyVersionAlgorithm that this\nCryptoKeyVersion supports.",
+                            "enum": [
+                                "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+                                "GOOGLE_SYMMETRIC_ENCRYPTION",
+                                "RSA_SIGN_PSS_2048_SHA256",
+                                "RSA_SIGN_PSS_3072_SHA256",
+                                "RSA_SIGN_PSS_4096_SHA256",
+                                "RSA_SIGN_PSS_4096_SHA512",
+                                "RSA_SIGN_PKCS1_2048_SHA256",
+                                "RSA_SIGN_PKCS1_3072_SHA256",
+                                "RSA_SIGN_PKCS1_4096_SHA256",
+                                "RSA_SIGN_PKCS1_4096_SHA512",
+                                "RSA_DECRYPT_OAEP_2048_SHA256",
+                                "RSA_DECRYPT_OAEP_3072_SHA256",
+                                "RSA_DECRYPT_OAEP_4096_SHA256",
+                                "RSA_DECRYPT_OAEP_4096_SHA512",
+                                "EC_SIGN_P256_SHA256",
+                                "EC_SIGN_P384_SHA384"
+                            ],
+                            "type": "string"
+                        },
+                        "attestation": {
+                            "description": "Output only. Statement that was generated and signed by the HSM at key\ncreation time. Use this statement to verify attributes of the key as stored\non the HSM, independently of Google. Only provided for key versions with\nprotection_level HSM.",
+                            "properties": {
+                                "content": {
+                                    "description": "Output only. The attestation data provided by the HSM when the key\noperation was performed.",
+                                    "format": "byte",
+                                    "type": "string"
+                                },
+                                "format": {
+                                    "description": "Output only. The format of the attestation data.",
+                                    "enum": [
+                                        "ATTESTATION_FORMAT_UNSPECIFIED",
+                                        "CAVIUM_V1_COMPRESSED",
+                                        "CAVIUM_V2_COMPRESSED"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "createTime": {
+                            "description": "Output only. The time at which this CryptoKeyVersion was created.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "destroyEventTime": {
+                            "description": "Output only. The time this CryptoKeyVersion's key material was\ndestroyed. Only present if state is\nDESTROYED.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "destroyTime": {
+                            "description": "Output only. The time this CryptoKeyVersion's key material is scheduled\nfor destruction. Only present if state is\nDESTROY_SCHEDULED.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "generateTime": {
+                            "description": "Output only. The time this CryptoKeyVersion's key material was\ngenerated.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Output only. The resource name for this CryptoKeyVersion in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.",
+                            "type": "string"
+                        },
+                        "protectionLevel": {
+                            "description": "Output only. The ProtectionLevel describing how crypto operations are\nperformed with this CryptoKeyVersion.",
+                            "enum": [
+                                "PROTECTION_LEVEL_UNSPECIFIED",
+                                "SOFTWARE",
+                                "HSM"
+                            ],
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "The current state of the CryptoKeyVersion.",
+                            "enum": [
+                                "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
+                                "PENDING_GENERATION",
+                                "ENABLED",
+                                "DISABLED",
+                                "DESTROYED",
+                                "DESTROY_SCHEDULED"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "purpose": {
+                    "description": "The immutable purpose of this CryptoKey.",
+                    "enum": [
+                        "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
+                        "ENCRYPT_DECRYPT",
+                        "ASYMMETRIC_SIGN",
+                        "ASYMMETRIC_DECRYPT"
+                    ],
+                    "type": "string"
+                },
+                "rotationPeriod": {
+                    "description": "next_rotation_time will be advanced by this period when the service\nautomatically rotates a key. Must be at least one day.\n\nIf rotation_period is set, next_rotation_time must also be set.\n\nKeys with purpose\nENCRYPT_DECRYPT support\nautomatic rotation. For other keys, this field must be omitted.",
+                    "format": "google-duration",
+                    "type": "string"
+                },
+                "versionTemplate": {
+                    "description": "A template describing settings for new CryptoKeyVersion instances.\nThe properties of new CryptoKeyVersion instances created by either\nCreateCryptoKeyVersion or\nauto-rotation are controlled by this template.",
+                    "properties": {
+                        "algorithm": {
+                            "description": "Required. Algorithm to use\nwhen creating a CryptoKeyVersion based on this template.\n\nFor backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both\nthis field is omitted and CryptoKey.purpose is\nENCRYPT_DECRYPT.",
+                            "enum": [
+                                "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+                                "GOOGLE_SYMMETRIC_ENCRYPTION",
+                                "RSA_SIGN_PSS_2048_SHA256",
+                                "RSA_SIGN_PSS_3072_SHA256",
+                                "RSA_SIGN_PSS_4096_SHA256",
+                                "RSA_SIGN_PSS_4096_SHA512",
+                                "RSA_SIGN_PKCS1_2048_SHA256",
+                                "RSA_SIGN_PKCS1_3072_SHA256",
+                                "RSA_SIGN_PKCS1_4096_SHA256",
+                                "RSA_SIGN_PKCS1_4096_SHA512",
+                                "RSA_DECRYPT_OAEP_2048_SHA256",
+                                "RSA_DECRYPT_OAEP_3072_SHA256",
+                                "RSA_DECRYPT_OAEP_4096_SHA256",
+                                "RSA_DECRYPT_OAEP_4096_SHA512",
+                                "EC_SIGN_P256_SHA256",
+                                "EC_SIGN_P384_SHA384"
+                            ],
+                            "type": "string"
+                        },
+                        "protectionLevel": {
+                            "description": "ProtectionLevel to use when creating a CryptoKeyVersion based on\nthis template. Immutable. Defaults to SOFTWARE.",
+                            "enum": [
+                                "PROTECTION_LEVEL_UNSPECIFIED",
+                                "SOFTWARE",
+                                "HSM"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

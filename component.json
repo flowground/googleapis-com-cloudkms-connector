@@ -1,0 +1,390 @@
+{
+    "title": "Cloud Key Management Service (KMS)",
+    "description": "Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications.\n",
+    "docsUrl": "https://cloud.google.com/kms/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/cloudkms/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://cloudkms.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_get": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_get.js",
+            "title": "Returns metadata for a given CryptoKeyVersion.",
+            "description": "Returns metadata for a given CryptoKeyVersion.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_patch": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_patch.js",
+            "title": "Update a CryptoKeyVersion's metadata.\n\nstate may be changed between\nENABLED and\nDISABLED using this\nmethod. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to\nmove between other states.",
+            "description": "Update a CryptoKeyVersion's metadata.\n\nstate may be changed between\nENABLED and\nDISABLED using this\nmethod. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to\nmove between other states.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_list": {
+            "main": "./lib/actions/cloudkms_projects_locations_list.js",
+            "title": "Lists information about the supported locations for this service.",
+            "description": "Lists information about the supported locations for this service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_getPublicKey": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_getPublicKey.js",
+            "title": "Returns the public key for the given CryptoKeyVersion. The\nCryptoKey.purpose must be\nASYMMETRIC_SIGN or\nASYMMETRIC_DECRYPT.",
+            "description": "Returns the public key for the given CryptoKeyVersion. The\nCryptoKey.purpose must be\nASYMMETRIC_SIGN or\nASYMMETRIC_DECRYPT.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_getPublicKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricDecrypt": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricDecrypt.js",
+            "title": "Decrypts data that was encrypted with a public key retrieved from\nGetPublicKey corresponding to a CryptoKeyVersion with\nCryptoKey.purpose ASYMMETRIC_DECRYPT.",
+            "description": "Decrypts data that was encrypted with a public key retrieved from\nGetPublicKey corresponding to a CryptoKeyVersion with\nCryptoKey.purpose ASYMMETRIC_DECRYPT.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricDecrypt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricSign": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricSign.js",
+            "title": "Signs data using a CryptoKeyVersion with CryptoKey.purpose\nASYMMETRIC_SIGN, producing a signature that can be verified with the public\nkey retrieved from GetPublicKey.",
+            "description": "Signs data using a CryptoKeyVersion with CryptoKey.purpose\nASYMMETRIC_SIGN, producing a signature that can be verified with the public\nkey retrieved from GetPublicKey.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_asymmetricSign.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_decrypt": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_decrypt.js",
+            "title": "Decrypts data that was protected by Encrypt. The CryptoKey.purpose\nmust be ENCRYPT_DECRYPT.",
+            "description": "Decrypts data that was protected by Encrypt. The CryptoKey.purpose\nmust be ENCRYPT_DECRYPT.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_decrypt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_destroy": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_destroy.js",
+            "title": "Schedule a CryptoKeyVersion for destruction.\n\nUpon calling this method, CryptoKeyVersion.state will be set to\nDESTROY_SCHEDULED\nand destroy_time will be set to a time 24\nhours in the future, at which point the state\nwill be changed to\nDESTROYED, and the key\nmaterial will be irrevocably destroyed.\n\nBefore the destroy_time is reached,\nRestoreCryptoKeyVersion may be called to reverse the process.",
+            "description": "Schedule a CryptoKeyVersion for destruction.\n\nUpon calling this method, CryptoKeyVersion.state will be set to\nDESTROY_SCHEDULED\nand destroy_time will be set to a time 24\nhours in the future, at which point the state\nwill be changed to\nDESTROYED, and the key\nmaterial will be irrevocably destroyed.\n\nBefore the destroy_time is reached,\nRestoreCryptoKeyVersion may be called to reverse the process.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_destroy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_encrypt": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_encrypt.js",
+            "title": "Encrypts data, so that it can only be recovered by a call to Decrypt.\nThe CryptoKey.purpose must be\nENCRYPT_DECRYPT.",
+            "description": "Encrypts data, so that it can only be recovered by a call to Decrypt.\nThe CryptoKey.purpose must be\nENCRYPT_DECRYPT.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_encrypt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_restore": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_restore.js",
+            "title": "Restore a CryptoKeyVersion in the\nDESTROY_SCHEDULED\nstate.\n\nUpon restoration of the CryptoKeyVersion, state\nwill be set to DISABLED,\nand destroy_time will be cleared.",
+            "description": "Restore a CryptoKeyVersion in the\nDESTROY_SCHEDULED\nstate.\n\nUpon restoration of the CryptoKeyVersion, state\nwill be set to DISABLED,\nand destroy_time will be cleared.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_restore.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_updatePrimaryVersion": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_updatePrimaryVersion.js",
+            "title": "Update the version of a CryptoKey that will be used in Encrypt.\n\nReturns an error if called on an asymmetric key.",
+            "description": "Update the version of a CryptoKey that will be used in Encrypt.\n\nReturns an error if called on an asymmetric key.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_updatePrimaryVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_list": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_list.js",
+            "title": "Lists CryptoKeyVersions.",
+            "description": "Lists CryptoKeyVersions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_create": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_create.js",
+            "title": "Create a new CryptoKeyVersion in a CryptoKey.\n\nThe server will assign the next sequential id. If unset,\nstate will be set to\nENABLED.",
+            "description": "Create a new CryptoKeyVersion in a CryptoKey.\n\nThe server will assign the next sequential id. If unset,\nstate will be set to\nENABLED.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_cryptoKeyVersions_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_list": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_list.js",
+            "title": "Lists CryptoKeys.",
+            "description": "Lists CryptoKeys.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_create": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_create.js",
+            "title": "Create a new CryptoKey within a KeyRing.\n\nCryptoKey.purpose and\nCryptoKey.version_template.algorithm\nare required.",
+            "description": "Create a new CryptoKey within a KeyRing.\n\nCryptoKey.purpose and\nCryptoKey.version_template.algorithm\nare required.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_list": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_list.js",
+            "title": "Lists KeyRings.",
+            "description": "Lists KeyRings.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_create": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_create.js",
+            "title": "Create a new KeyRing in a given Project and Location.",
+            "description": "Create a new KeyRing in a given Project and Location.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_getIamPolicy": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_getIamPolicy.js",
+            "title": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_getIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_setIamPolicy": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_setIamPolicy.js",
+            "title": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_setIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cloudkms_projects_locations_keyRings_cryptoKeys_testIamPermissions": {
+            "main": "./lib/actions/cloudkms_projects_locations_keyRings_cryptoKeys_testIamPermissions.js",
+            "title": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cloudkms_projects_locations_keyRings_cryptoKeys_testIamPermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
